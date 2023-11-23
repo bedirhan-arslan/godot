@@ -1,0 +1,283 @@
+[gd_scene load_steps=37 format=3 uid="uid://e466ihmn48g0"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_06puu"]
+[ext_resource type="Texture2D" uid="uid://coqptkxd7uunx" path="res://flappy-bird-assets/sprites/background-day.png" id="2_eiqkr"]
+[ext_resource type="Script" path="res://Ground.gd" id="3_jgtbb"]
+[ext_resource type="Texture2D" uid="uid://ba2n0pbm300jb" path="res://flappy-bird-assets/sprites/base.png" id="3_l5pea"]
+[ext_resource type="Script" path="res://Bird.gd" id="4_y70vk"]
+[ext_resource type="Texture2D" uid="uid://u4wpg0xdfxfh" path="res://flappy-bird-assets/sprites/yellowbird-downflap.png" id="5_ifiii"]
+[ext_resource type="Texture2D" uid="uid://fh20xvhhnjs3" path="res://flappy-bird-assets/sprites/yellowbird-midflap.png" id="6_tjt0e"]
+[ext_resource type="Texture2D" uid="uid://c35jbho3s70uh" path="res://flappy-bird-assets/sprites/yellowbird-upflap.png" id="7_b2b1u"]
+[ext_resource type="PackedScene" uid="uid://b8qt6cqjoa5an" path="res://pipe.tscn" id="9_vehid"]
+[ext_resource type="Texture2D" uid="uid://cw6hsl8vb400" path="res://flappy-bird-assets/sprites/0.png" id="10_ojwy5"]
+[ext_resource type="Script" path="res://Score.gd" id="10_qgj1f"]
+[ext_resource type="Texture2D" uid="uid://dnmihg0jtdf8a" path="res://flappy-bird-assets/sprites/1.png" id="11_ponah"]
+[ext_resource type="Texture2D" uid="uid://dlawdrjaof2am" path="res://flappy-bird-assets/sprites/2.png" id="12_jjb4c"]
+[ext_resource type="Texture2D" uid="uid://cfdtnaksdipd0" path="res://flappy-bird-assets/sprites/3.png" id="13_4dtlq"]
+[ext_resource type="Texture2D" uid="uid://oq2ac7j3fj4c" path="res://flappy-bird-assets/sprites/4.png" id="14_3bmkl"]
+[ext_resource type="Texture2D" uid="uid://cvwg2eb6sjhg6" path="res://flappy-bird-assets/sprites/5.png" id="15_nl5rh"]
+[ext_resource type="Texture2D" uid="uid://cl4l6whphdj4n" path="res://flappy-bird-assets/sprites/6.png" id="16_jchgw"]
+[ext_resource type="Texture2D" uid="uid://c3vb10w2e27x7" path="res://flappy-bird-assets/sprites/7.png" id="17_hsyxe"]
+[ext_resource type="Texture2D" uid="uid://c8vj40a677wfc" path="res://flappy-bird-assets/sprites/8.png" id="18_1ji37"]
+[ext_resource type="Texture2D" uid="uid://bfn2nqaasnyv6" path="res://flappy-bird-assets/sprites/9.png" id="19_qbnbt"]
+[ext_resource type="AudioStream" uid="uid://7lajc3sbvfgj" path="res://flappy-bird-assets/audio/point.wav" id="21_fpd6n"]
+[ext_resource type="AudioStream" uid="uid://bxmqqk7byp0cn" path="res://flappy-bird-assets/audio/hit.wav" id="22_wdtpg"]
+[ext_resource type="AudioStream" uid="uid://ctka0shvu10np" path="res://swoosh.wav" id="23_e73xn"]
+[ext_resource type="Script" path="res://Pause.gd" id="24_prfi8"]
+[ext_resource type="Texture2D" uid="uid://bnd8gflpyb2we" path="res://flappy-bird-assets/sprites/gameover.png" id="25_5ei1t"]
+[ext_resource type="Texture2D" uid="uid://yw0wddtlerqc" path="res://flappy-bird-assets/sprites/message.png" id="25_lc07t"]
+[ext_resource type="Script" path="res://Gameover.gd" id="27_wpgih"]
+[ext_resource type="Texture2D" uid="uid://bt3qb851ei54m" path="res://flappy-bird-assets/sprites/gameover_score.png" id="28_hnugw"]
+[ext_resource type="Script" path="res://GameoverScore.gd" id="29_fr6in"]
+[ext_resource type="Script" path="res://Highscore.gd" id="29_xbi84"]
+[ext_resource type="Script" path="res://Score2.gd" id="31_rt6os"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubu5c"]
+size = Vector2(28, 63.9646)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kln8r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ifiii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tjt0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_b2b1u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rorrk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ojwy5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ponah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jjb4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_4dtlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_3bmkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_nl5rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jchgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hsyxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1ji37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_qbnbt")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tyn2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ojwy5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ponah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jjb4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_4dtlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_3bmkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_nl5rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jchgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hsyxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1ji37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_qbnbt")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k6g1c"]
+font_size = 75
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 9
+shadow_color = Color(0.0431373, 0.0235294, 0.00392157, 0.866667)
+
+[node name="Game" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_06puu")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("2_eiqkr")
+
+[node name="Pipe" parent="." instance=ExtResource("9_vehid")]
+position = Vector2(952, 0)
+
+[node name="Pipe2" parent="." instance=ExtResource("9_vehid")]
+position = Vector2(1472, -192)
+
+[node name="Pipe3" parent="." instance=ExtResource("9_vehid")]
+position = Vector2(1984, 0)
+
+[node name="Ground" type="Area2D" parent="."]
+position = Vector2(40, 8)
+scale = Vector2(2, 0.667)
+script = ExtResource("3_jgtbb")
+
+[node name="Base" type="Sprite2D" parent="Ground"]
+position = Vector2(176, 1703.15)
+scale = Vector2(1.667, 3.89141)
+texture = ExtResource("3_l5pea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(176, 1501.91)
+scale = Vector2(20, 0.667)
+shape = SubResource("RectangleShape2D_ubu5c")
+
+[node name="Bird" type="CharacterBody2D" parent="."]
+position = Vector2(360, 696)
+scale = Vector2(2.7, 2.7)
+script = ExtResource("4_y70vk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bird"]
+sprite_frames = SubResource("SpriteFrames_kln8r")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bird"]
+polygon = PackedVector2Array(-16, 8, -7.99999, 12, 4.00001, 12, 16, 8, 16, 0, 12, -8, 8.00001, -12, -3.99999, -12, -16, -4)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 40.0
+offset_right = 160.0
+offset_bottom = 63.0
+
+[node name="Score" type="Node2D" parent="."]
+scale = Vector2(0.95, 0.95)
+script = ExtResource("10_qgj1f")
+
+[node name="Score_Birler" type="AnimatedSprite2D" parent="Score"]
+position = Vector2(379, 85)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_rorrk")
+
+[node name="Score_Onlar" type="AnimatedSprite2D" parent="Score"]
+position = Vector2(-100, 85)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_6tyn2")
+
+[node name="ScoreSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_fpd6n")
+volume_db = -10.0
+
+[node name="DeathHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_wdtpg")
+volume_db = -20.0
+
+[node name="DeathFall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_e73xn")
+volume_db = -20.0
+
+[node name="Pause" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("24_prfi8")
+
+[node name="pause_text" type="Label" parent="Pause"]
+visible = false
+layout_mode = 0
+offset_left = 216.0
+offset_top = 200.0
+offset_right = 506.0
+offset_bottom = 306.0
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_k6g1c")
+
+[node name="Message" type="Sprite2D" parent="."]
+position = Vector2(360, 536)
+scale = Vector2(3.30435, 3.5319)
+texture = ExtResource("25_lc07t")
+
+[node name="Gameover" type="Sprite2D" parent="."]
+position = Vector2(360, -88)
+scale = Vector2(3, 3)
+texture = ExtResource("25_5ei1t")
+script = ExtResource("27_wpgih")
+
+[node name="GameoverScore" type="Sprite2D" parent="."]
+position = Vector2(360, 1296)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("28_hnugw")
+script = ExtResource("29_fr6in")
+
+[node name="Highscore" type="Node2D" parent="GameoverScore"]
+position = Vector2(-40, 40)
+scale = Vector2(0.5625, 0.5625)
+script = ExtResource("29_xbi84")
+
+[node name="Score_Birler" type="AnimatedSprite2D" parent="GameoverScore/Highscore"]
+position = Vector2(517, 88.889)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_rorrk")
+
+[node name="Score_Onlar" type="AnimatedSprite2D" parent="GameoverScore/Highscore"]
+position = Vector2(437, 89)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_6tyn2")
+
+[node name="Score2" type="Node2D" parent="GameoverScore"]
+position = Vector2(0, -90)
+scale = Vector2(0.5625, 0.5625)
+script = ExtResource("31_rt6os")
+
+[node name="Score_Birler" type="AnimatedSprite2D" parent="GameoverScore/Score2"]
+position = Vector2(448, 96)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_rorrk")
+
+[node name="Score_Onlar" type="AnimatedSprite2D" parent="GameoverScore/Score2"]
+position = Vector2(368, 96)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_6tyn2")
+
+[connection signal="body_entered" from="Ground" to="." method="_on_ground_body_entered"]
+[connection signal="finished" from="DeathHit" to="Bird" method="_on_death_hit_finished"]
+[connection signal="finished" from="DeathHit" to="Gameover" method="_on_death_hit_finished"]
+[connection signal="finished" from="DeathHit" to="GameoverScore" method="_on_death_hit_finished"]
+[connection signal="finished" from="DeathFall" to="." method="_on_death_fall_finished"]
