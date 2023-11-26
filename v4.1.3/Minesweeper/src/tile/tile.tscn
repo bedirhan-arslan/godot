@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://iair75t5244h"]
+
+[ext_resource type="Script" path="res://src/tile/tile.gd" id="1_qbwsw"]
+[ext_resource type="Texture2D" uid="uid://63fwevlupord" path="res://src/tile/tile.png" id="2_et7oc"]
+[ext_resource type="Texture2D" uid="uid://dapm16vxrrck7" path="res://src/tile/flag.png" id="3_jyfy8"]
+[ext_resource type="Texture2D" uid="uid://cmucjlms3xh8" path="res://src/tile/bomb.png" id="4_35ee7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6acv"]
+size = Vector2(64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_km0s2"]
+font_size = 50
+
+[node name="tile" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_qbwsw")
+
+[node name="TileSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_et7oc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j6acv")
+
+[node name="Flag" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_jyfy8")
+
+[node name="Bomb" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-0.749999, -0.749999)
+scale = Vector2(0.115, 0.115)
+texture = ExtResource("4_35ee7")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -14.0
+offset_top = -36.0
+offset_right = 20.0
+offset_bottom = 50.0
+label_settings = SubResource("LabelSettings_km0s2")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
