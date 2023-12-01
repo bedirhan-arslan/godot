@@ -1,9 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://blapuxwpk1ffm"]
+[gd_scene load_steps=10 format=3 uid="uid://blapuxwpk1ffm"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_defia"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d6ym1"]
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_5xmq3"]
+font_size = 100
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i37pq"]
+font_size = 100
+font_color = Color(0, 0, 0, 0.317647)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c6l7a"]
+font_size = 36
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bbru4"]
+font_size = 36
+font_color = Color(0, 0, 0, 0.470588)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1k88o"]
+font_size = 100
+font_color = Color(0.843137, 0.176471, 0.305882, 1)
+outline_size = 3
+outline_color = Color(0.407843, 0.0627451, 0.0627451, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wbcwk"]
+font_size = 100
+font_color = Color(0, 0, 0, 0.462745)
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xkdx3"]
+font_size = 36
+font_color = Color(0.843137, 0.176471, 0.305882, 1)
+outline_size = 3
+outline_color = Color(0.407843, 0.0627451, 0.0627451, 1)
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_defia")
@@ -17,3 +52,96 @@ offset_bottom = 35.0
 text = "Time: 0"
 label_settings = SubResource("LabelSettings_d6ym1")
 horizontal_alignment = 1
+
+[node name="Win" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 193.0
+offset_top = -170.0
+offset_right = 233.0
+offset_bottom = -130.0
+
+[node name="Won" type="Label" parent="Win"]
+z_index = 2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "You Won"
+label_settings = SubResource("LabelSettings_5xmq3")
+
+[node name="Won2" type="Label" parent="Win"]
+z_index = 1
+layout_mode = 0
+offset_left = -5.0
+offset_top = 4.0
+offset_right = 423.0
+offset_bottom = 144.0
+text = "You Won"
+label_settings = SubResource("LabelSettings_i37pq")
+
+[node name="Restart3" type="Label" parent="Win"]
+z_index = 2
+layout_mode = 0
+offset_left = 39.0
+offset_top = 123.0
+offset_right = 389.0
+offset_bottom = 176.0
+text = "Press  'R'  To Restart"
+label_settings = SubResource("LabelSettings_c6l7a")
+
+[node name="Restart4" type="Label" parent="Win"]
+z_index = 1
+layout_mode = 0
+offset_left = 36.0
+offset_top = 125.0
+offset_right = 386.0
+offset_bottom = 178.0
+text = "Press  'R'  To Restart"
+label_settings = SubResource("LabelSettings_bbru4")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_right = 44.0
+offset_bottom = 40.0
+
+[node name="GameOver" type="Label" parent="Control"]
+z_index = 2
+layout_mode = 0
+offset_left = 93.0
+offset_top = -171.0
+offset_right = 667.0
+offset_bottom = -31.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_1k88o")
+
+[node name="GameOver2" type="Label" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 87.0
+offset_top = -167.0
+offset_right = 661.0
+offset_bottom = -27.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_wbcwk")
+
+[node name="Restart" type="Label" parent="Control"]
+z_index = 2
+layout_mode = 0
+offset_left = 228.0
+offset_top = -47.0
+offset_right = 560.0
+offset_bottom = 6.0
+text = "Press  'R'  To Restart"
+label_settings = SubResource("LabelSettings_xkdx3")
+
+[node name="Restart2" type="Label" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 225.0
+offset_top = -45.0
+offset_right = 575.0
+offset_bottom = 8.0
+text = "Press  'R'  To Restart"
+label_settings = SubResource("LabelSettings_bbru4")

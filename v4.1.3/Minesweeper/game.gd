@@ -5,6 +5,8 @@ var tilePath = preload("res://src/tile/tile.tscn")
 var tiles = []
 var time := 0.0
 var prevTime := 0.0
+var isFinished := false
+var isFirstClick = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,14 +43,15 @@ func _process(delta):
 		get_tree().reload_current_scene()
 
 func _time(delta):
-	time += delta
-	#$Label.text = "Time: " + str(snappedf(time, 0.01))
-	if time - prevTime >= 1.0:
-		prevTime = time
-		$Label.text = "Time: " + str(int(time))
+	if !isFinished:
+		time += delta
+		#$Label.text = "Time: " + str(snappedf(time, 0.01))
+		if time - prevTime >= 1.0:
+			prevTime = time
+			$Label.text = "Time: " + str(int(time))
 
 func _check_finish():
-	var isFinished = true
+	isFinished = true
 	for i in range(1, 25):
 		for j in range(1, 25):
 			var t = tiles[i][j]
@@ -57,3 +60,21 @@ func _check_finish():
 	
 	if isFinished:
 		print("Won")
+		var tw = create_tween()
+		tw.tween_property($Win, "global_position", Vector2($Win.global_position.x, $Win.global_position.y + 450), 0.5)
+		_show_bombs()
+
+func _game_over():
+	print("Game Over")
+	isFinished = true
+	var tw = create_tween()
+	tw.tween_property($Control, "global_position", Vector2($Control.global_position.x, $Control.global_position.y + 450), 0.5)
+	_show_bombs()
+
+func _show_bombs():
+	for i in tiles:
+		for j in i:
+			j.isClicked = true
+			if j.type == 1:
+				var tw = create_tween()
+				tw.tween_property(j.get_child(3), "self_modulate", Color(1, 1, 1, 1), RandomNumberGenerator.new().randf())
