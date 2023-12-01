@@ -74,6 +74,7 @@ func _game_over():
 func _show_bombs():
 	for i in tiles:
 		for j in i:
+			j.isFinished = true
 			j.isClicked = true
 			if j.type == 1:
 				var tw = create_tween()

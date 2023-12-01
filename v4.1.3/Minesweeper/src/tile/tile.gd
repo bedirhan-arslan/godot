@@ -4,6 +4,7 @@ var type: int
 var color: int
 var isMouseOn: bool
 var isClicked := false
+var isFinished := false
 var pos: Vector2i
 
 # Called when the node enters the scene tree for the first time.
@@ -14,29 +15,46 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !isClicked and isMouseOn:
-		if Input.is_action_just_pressed("mouse_1") and $Flag.visible == false:
-			isClicked = true
-			if type == 0:
-				get_parent().isFirstClick = false
-				_check_bombs()
-				_change_color()
-				
-				get_parent()._check_finish()
-				
-			else:
-				if get_parent().isFirstClick:
-					get_parent().isFirstClick = false
-					type = 0
-					_check_bombs()
-					_change_color()
-					return
-				
-				get_parent()._game_over()
-	
-		elif Input.is_action_just_pressed("mouse_2"):
-			$Flag.visible = !$Flag.visible
+	if !isFinished:
+		if !isClicked:
+			var tiles = get_parent().tiles
+			if tiles[pos.x][pos.y-1].isClicked and tiles[pos.x][pos.y-1].type != -1:
+				$vertical_outline_left.visible = true
+			if tiles[pos.x][pos.y+1].isClicked and tiles[pos.x][pos.y+1].type != -1:
+				$vertical_outline_right.visible = true
+			if tiles[pos.x-1][pos.y].isClicked and tiles[pos.x-1][pos.y].type != -1:
+				$horizontal_outline_top.visible = true
+			if tiles[pos.x+1][pos.y].isClicked and tiles[pos.x+1][pos.y].type != -1:
+				$horizontal_outline_bottom.visible = true
+			
+			if isMouseOn:			
+				if Input.is_action_just_pressed("mouse_1") and $Flag.visible == false:
+					isClicked = true
+					if type == 0:
+						get_parent().isFirstClick = false
+						_check_bombs()
+						_change_color()
+						
+						get_parent()._check_finish()
+						
+					else:
+						if get_parent().isFirstClick:
+							get_parent().isFirstClick = false
+							type = 0
+							_check_bombs()
+							_change_color()
+							return
+						
+						get_parent()._game_over()
+			
+				elif Input.is_action_just_pressed("mouse_2"):
+					$Flag.visible = !$Flag.visible
 
+		else:
+			$vertical_outline_left.visible = false
+			$vertical_outline_right.visible = false
+			$horizontal_outline_bottom.visible = false
+			$horizontal_outline_top.visible = false
 
 func _on_mouse_entered():
 	isMouseOn = true

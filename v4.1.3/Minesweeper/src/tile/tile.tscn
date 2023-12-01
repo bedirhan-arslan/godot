@@ -28,7 +28,7 @@ texture = ExtResource("3_jyfy8")
 
 [node name="Bomb" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
-scale = Vector2(0.115, 0.115)
+scale = Vector2(0.11, 0.11)
 texture = ExtResource("4_35ee7")
 
 [node name="Label" type="Label" parent="."]
@@ -38,6 +38,40 @@ offset_top = -36.0
 offset_right = 20.0
 offset_bottom = 50.0
 label_settings = SubResource("LabelSettings_km0s2")
+
+[node name="vertical_outline_left" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0.529412, 0.686275, 0.227451, 1)
+z_index = 1
+position = Vector2(-32, 0)
+scale = Vector2(0.05, 1.05)
+texture = ExtResource("2_et7oc")
+
+[node name="vertical_outline_right" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0.529412, 0.686275, 0.227451, 1)
+z_index = 1
+position = Vector2(32, 0)
+scale = Vector2(0.05, 1.05)
+texture = ExtResource("2_et7oc")
+
+[node name="horizontal_outline_bottom" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0.529412, 0.686275, 0.227451, 1)
+z_index = 1
+position = Vector2(0, 32)
+rotation = 1.5708
+scale = Vector2(0.05, 1.05)
+texture = ExtResource("2_et7oc")
+
+[node name="horizontal_outline_top" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0.529412, 0.686275, 0.227451, 1)
+z_index = 1
+position = Vector2(0, -32)
+rotation = 1.5708
+scale = Vector2(0.05, 1.05)
+texture = ExtResource("2_et7oc")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

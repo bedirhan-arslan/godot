@@ -54,7 +54,6 @@ label_settings = SubResource("LabelSettings_d6ym1")
 horizontal_alignment = 1
 
 [node name="Win" type="Control" parent="."]
-z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_left = 193.0
@@ -101,7 +100,6 @@ text = "Press  'R'  To Restart"
 label_settings = SubResource("LabelSettings_bbru4")
 
 [node name="Control" type="Control" parent="."]
-z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_left = 4.0
