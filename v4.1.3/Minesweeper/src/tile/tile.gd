@@ -32,10 +32,8 @@ func _process(delta):
 					isClicked = true
 					if type == 0:
 						if get_parent().isFirstClick:
-							_clear_bombs()
-							_check_bombs()
-							_change_color()
 							get_parent().isFirstClick = false
+							_clear_bombs()
 						_check_bombs()
 						_change_color()
 						
@@ -44,10 +42,7 @@ func _process(delta):
 					else:
 						if get_parent().isFirstClick:
 							get_parent().isFirstClick = false
-							type = 0
 							_clear_bombs()
-							_check_bombs()
-							_change_color()
 							return
 						
 						get_parent()._game_over()
@@ -78,10 +73,12 @@ func _on_mouse_exited():
 func _check_bombs():
 	var tiles = get_parent().tiles
 	var count = 0
+	isClicked = true
 	for i in range(-1, 2):
 		for j in range(-1, 2):
-			if tiles[pos.x+i][pos.y+j].type == 1:
-				count += 1
+			if type != -1:
+				if tiles[pos.x+i][pos.y+j].type == 1:
+					count += 1
 	
 	if count != 0:
 		$Label.visible = true
@@ -97,6 +94,7 @@ func _check_bombs():
 		tw.tween_property($Label, "modulate", $Label.modulate, 0.1).from(Color($Label.modulate, 0))
 
 	else:
+		$Label.visible = false
 		for i in range(-1, 2):
 			for j in range(-1, 2):
 				if type != -1:
@@ -123,26 +121,25 @@ func _change_color():
 		tw.tween_property($TileSprite, "modulate", Color(0.84, 0.72, 0.6, 1), 0.1)
 
 func _clear_bombs():
+	isClicked = true
+	type = 0
+	_check_bombs()
+	_change_color()
+	
 	var tiles = get_parent().tiles
 	var x = pos.x + RandomNumberGenerator.new().randi_range(-1, 1)
 	var y = pos.y + RandomNumberGenerator.new().randi_range(-1, 1)
 	
 	if get_parent().clear_count != 0:
-		
 		if tiles[x][y].type != -1:
 			get_parent().clear_count -= 1
 			print("clearing " + str(x) + ' ' + str(y))
-			tiles[x][y].isClicked = true
-			tiles[x][y].type = 0
-			tiles[x][y]._check_bombs()
-			tiles[x][y]._change_color()
 			tiles[x][y]._clear_bombs()
-		
+	
 	for i in range(1, 25):
 		for j in range(1, 25):
 			if tiles[i][j].isClicked:
-				tiles[x][y]._check_bombs()
-				tiles[x][y]._change_color()
+				tiles[i][j]._check_bombs()
 
 func _see_bombs():
 	var tiles = get_parent().tiles
