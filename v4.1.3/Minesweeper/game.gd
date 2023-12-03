@@ -7,6 +7,7 @@ var time := 0.0
 var prevTime := 0.0
 var isFinished := false
 var isFirstClick = true
+var clear_count = RandomNumberGenerator.new().randi_range(5, 20)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,10 +46,10 @@ func _process(delta):
 func _time(delta):
 	if !isFinished:
 		time += delta
-		#$Label.text = "Time: " + str(snappedf(time, 0.01))
+		#$Time.text = "Time: " + str(snappedf(time, 0.01))
 		if time - prevTime >= 1.0:
 			prevTime = time
-			$Label.text = "Time: " + str(int(time))
+			$Time.text = "Time: " + str(int(time))
 
 func _check_finish():
 	isFinished = true
